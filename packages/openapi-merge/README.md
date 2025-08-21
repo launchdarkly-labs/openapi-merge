@@ -1,4 +1,4 @@
-# openapi-merge
+# @launchdarkly/openapi-merge
 
 This library assumes that you have a number of microservices that you wish to expose through one main service or gateway.
 
@@ -8,14 +8,42 @@ deterministic manner, into a single OpenAPI specification.
 Many of the design decisions of this library have that use case in mind and thus the features will be geared to making that
 be a good experience.
 
-If you are looking for a CLI tool based on this library, then please check out: [![npm](https://img.shields.io/npm/v/openapi-merge-cli?label=openapi-merge-cli&logo=npm)](https://bit.ly/3bEVq3f)
+**This is a fork of [openapi-merge](https://github.com/robertmassaioli/openapi-merge) with modern tooling and LaunchDarkly-specific enhancements.**
+
+## Installation
+
+### From Git Repository
+
+```shell
+# Install both the core library and CLI tool
+npm install --save-dev \
+  "https://github.com/launchdarkly-labs/openapi-merge.git#workspace=@launchdarkly/openapi-merge" \
+  "https://github.com/launchdarkly-labs/openapi-merge.git#workspace=@launchdarkly/openapi-merge-cli"
+```
+
+### With Yarn and Resolutions
+
+Add to your `package.json`:
+
+```json
+{
+  "devDependencies": {
+    "@launchdarkly/openapi-merge": "https://github.com/launchdarkly-labs/openapi-merge.git#workspace=@launchdarkly/openapi-merge"
+  },
+  "resolutions": {
+    "@launchdarkly/openapi-merge": "https://github.com/launchdarkly-labs/openapi-merge.git#workspace=@launchdarkly/openapi-merge"
+  }
+}
+```
+
+If you are looking for a CLI tool based on this library, then please check out [@launchdarkly/openapi-merge-cli](../openapi-merge-cli/README.md).
 
 ## How to use this library
 
 This library is intended to be used in a JavaScript or Typescript project. Here is a Typescript example that will work 100%:
 
 ``` typescript
-import { merge, isErrorResult } from 'openapi-merge';
+import { merge, isErrorResult } from '@launchdarkly/openapi-merge';
 import { Swagger } from 'atlassian-openapi';
 
 // Does not have to use the 'SwaggerV3' type, the merge function will accept 'any' so long as the underlying object is valid

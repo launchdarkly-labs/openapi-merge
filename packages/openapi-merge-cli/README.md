@@ -1,11 +1,48 @@
-# openapi-merge-cli
+# @launchdarkly/openapi-merge-cli
 
-This tool is based on the [![npm](https://img.shields.io/npm/v/openapi-merge?label=openapi-merge&logo=npm)](https://bit.ly/2WnIytF) library. Please read
+This tool is based on the [@launchdarkly/openapi-merge](../openapi-merge/README.md) library. Please read
 that README for more details on how the merging algorithm works.
 
 This library is intended to be used for merging multiple OpenAPI 3.0 files together. The most common reason that developers want to do this is because
 they have multiple services that they wish to expose underneath a single API Gateway. Therefore, even though this merging logic is sufficiently generic to be
 used for most use cases, some of the feature decisions are tailored for that specific use case.
+
+**This is a fork of [openapi-merge-cli](https://github.com/robertmassaioli/openapi-merge) with modern tooling and LaunchDarkly-specific enhancements.**
+
+## Installation
+
+### From Git Repository
+
+```shell
+# Install both packages (CLI depends on core library)
+npm install --save-dev \
+  "https://github.com/launchdarkly-labs/openapi-merge.git#workspace=@launchdarkly/openapi-merge" \
+  "https://github.com/launchdarkly-labs/openapi-merge.git#workspace=@launchdarkly/openapi-merge-cli"
+```
+
+### With Yarn and Resolutions
+
+Add to your `package.json`:
+
+```json
+{
+  "devDependencies": {
+    "@launchdarkly/openapi-merge": "https://github.com/launchdarkly-labs/openapi-merge.git#workspace=@launchdarkly/openapi-merge",
+    "@launchdarkly/openapi-merge-cli": "https://github.com/launchdarkly-labs/openapi-merge.git#workspace=@launchdarkly/openapi-merge-cli"
+  },
+  "resolutions": {
+    "@launchdarkly/openapi-merge": "https://github.com/launchdarkly-labs/openapi-merge.git#workspace=@launchdarkly/openapi-merge"
+  }
+}
+```
+
+### Global Installation
+
+```shell
+npm install -g \
+  "https://github.com/launchdarkly-labs/openapi-merge.git#workspace=@launchdarkly/openapi-merge" \
+  "https://github.com/launchdarkly-labs/openapi-merge.git#workspace=@launchdarkly/openapi-merge-cli"
+```
 
 ## Getting started
 
@@ -66,20 +103,51 @@ In this configuration you specify your inputs and your output file. For each inp
 
 And then, once you have your Inputs in place and your configuration file you merely run the following in the directory that has your configuration file:
 
-``` bash
-npx openapi-merge-cli
+```bash
+# If installed locally
+npx @launchdarkly/openapi-merge-cli
+
+# If installed globally
+openapi-merge-cli
+
+# Or with yarn
+yarn @launchdarkly/openapi-merge-cli
 ```
 
-For more fine grained details on what `Configuration` options are available to you. [Please read the docs](https://github.com/robertmassaioli/openapi-merge/wiki/README).
+For more fine grained details on what `Configuration` options are available to you, please read the original [openapi-merge documentation](https://github.com/robertmassaioli/openapi-merge/wiki/README).
 
 If you wish, you may write your configuration file in YAML format and then run:
 
-``` shell
-npx openapi-merge-cli --config path/to/openapi-merge.yaml
+```shell
+npx @launchdarkly/openapi-merge-cli --config path/to/openapi-merge.yaml
 ```
 
 And the merge should be run and complete! Congratulations and enjoy!
 
-If you experience any issues then please [raise them in the bug tracker][1].
+## Development
 
- [1]: https://github.com/robertmassaioli/openapi-merge/issues/new
+This project uses modern tooling:
+- **TypeScript 5.9.2** - Type-safe JavaScript
+- **ESLint 9.33.0** - Code linting with flat config
+- **Yarn Berry 4.9.3** - Package management with workspaces
+
+### Building from Source
+
+```shell
+# Clone the repository
+git clone https://github.com/launchdarkly-labs/openapi-merge.git
+cd openapi-merge
+
+# Install dependencies
+corepack yarn install
+
+# Build the CLI
+corepack yarn workspace @launchdarkly/openapi-merge-cli run build
+
+# Run the CLI
+corepack yarn cli
+```
+
+## Issues and Support
+
+If you experience any issues then please [raise them in the bug tracker](https://github.com/launchdarkly-labs/openapi-merge/issues/new).

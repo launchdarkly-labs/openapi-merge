@@ -13,36 +13,81 @@ Welcome to the openapi-merge repository. This library is intended to be used for
 
 This is a multi-package repository that contains:
 
-* The openapi-merge library: Not yet published
-* The openapi-merge CLI tool: Not yet published
+* **@launchdarkly/openapi-merge**: The core openapi-merge library
+* **@launchdarkly/openapi-merge-cli**: The CLI tool for merging OpenAPI files
 
-Depending on your use-case, you may wish to use the CLI tool or the library in your project. Please see the readme file of the specific package for more details.
+Both packages are available for installation via Git references (see installation instructions below).
+
+### Installation from Git
+
+To use these packages in your project, you can install them directly from this Git repository:
+
+#### CLI Tool Only
+```shell
+# Install both packages (CLI depends on core library)
+npm install --save-dev \
+  "https://github.com/launchdarkly-labs/openapi-merge.git#workspace=@launchdarkly/openapi-merge" \
+  "https://github.com/launchdarkly-labs/openapi-merge.git#workspace=@launchdarkly/openapi-merge-cli"
+```
+
+#### With Yarn and Resolutions
+For Yarn users, add to your `package.json`:
+
+```json
+{
+  "devDependencies": {
+    "@launchdarkly/openapi-merge": "https://github.com/launchdarkly-labs/openapi-merge.git#workspace=@launchdarkly/openapi-merge",
+    "@launchdarkly/openapi-merge-cli": "https://github.com/launchdarkly-labs/openapi-merge.git#workspace=@launchdarkly/openapi-merge-cli"
+  },
+  "resolutions": {
+    "@launchdarkly/openapi-merge": "https://github.com/launchdarkly-labs/openapi-merge.git#workspace=@launchdarkly/openapi-merge"
+  }
+}
+```
 
 ### Developing on openapi-merge
 
-This project is a multi-package repository and uses the [bolt][1] tool to manage these packages in one development experience.
+This project uses **Yarn Berry (v4)** with workspaces to manage the multi-package repository.
 
-After checking out this repository, you can run the following command to install the required dependencies:
+#### Prerequisites
+- Node.js 18+ 
+- Corepack enabled: `corepack enable`
 
-``` shell
-bolt install
+#### Setup
+After checking out this repository, install dependencies:
+
+```shell
+corepack yarn install
 ```
 
-You can then test running the CLI tool by running:
+#### Development Commands
 
-``` shell
-yarn cli
+```shell
+# Run the CLI tool
+corepack yarn cli
+
+# Build all packages
+corepack yarn workspaces foreach --all run build
+
+# Run all tests
+corepack yarn test
+
+# Lint all packages
+corepack yarn lint
+
+# Build and watch the core library during development
+corepack yarn workspace @launchdarkly/openapi-merge run build --watch
 ```
 
-If you wish to ensure that you can develop on the `openapi-merge` library in parallel to the `openapi-merge-cli` tool
-then you must run the Typescript build for `openapi-merge` in watch mode. You can do this by:
+#### Project Structure
+- `/packages/openapi-merge/` - Core merging library
+- `/packages/openapi-merge-cli/` - Command-line interface
+- Modern tooling: TypeScript 5.9, ESLint 9.0, Jest 29.7
 
-``` shell
-bolt w openapi-merge build -w
-```
+### Tooling
 
-This will ensure that the Typescript is compiled into JavaScript so that it can be used by the `openapi-merge-cli` tool.
-
-For the other operations that you wish to perform, please see the package.json of the other packages in this repository.
-
- [1]: https://github.com/boltpkg/bolt
+This project uses modern JavaScript tooling:
+- **TypeScript 5.9.2** - Type-safe JavaScript
+- **ESLint 9.33.0** - Code linting with flat config
+- **Jest 29.7.0** - Testing framework with ts-jest
+- **Yarn Berry 4.9.3** - Package management with workspaces
