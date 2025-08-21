@@ -28,14 +28,14 @@ export async function readYamlOrJSON(fileContents: string): Promise<unknown> {
   try {
     return JSON.parse(fileContents);
   } catch (e) {
-    jsonError = e;
+    jsonError = e instanceof Error ? e : new Error(String(e));
   }
 
   let yamlError: Error;
   try {
-    return yaml.safeLoad(fileContents);
+    return yaml.load(fileContents);
   } catch (e) {
-    yamlError = e;
+    yamlError = e instanceof Error ? e : new Error(String(e));
   }
 
   throw new JsonOrYamlParseError(jsonError, yamlError);

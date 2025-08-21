@@ -5,7 +5,7 @@ import { readFileAsString, readYamlOrJSON } from "./file-loading";
 import process from 'process';
 
 async function validateConfiguration(rawData: string): Promise<Configuration | string> {
-  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+   
   try {
     const data = await readYamlOrJSON(rawData);
 
@@ -32,7 +32,7 @@ export async function loadConfiguration(configLocation?: string): Promise<Config
     const rawData = await readFileAsString(configFile);
 
     return await validateConfiguration(rawData);
-  } catch (e) {
+  } catch {
     return `Could not find or read '${configFile}' in the current directory: ${process.cwd()}`;
   }
 }

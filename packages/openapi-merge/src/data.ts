@@ -131,7 +131,7 @@ export type ErrorMergeResult = {
   message: string;
 };
 
-export function isErrorResult<A>(t: A | ErrorMergeResult): t is ErrorMergeResult {
+export function isErrorResult<A extends object>(t: A | ErrorMergeResult): t is ErrorMergeResult {
   return 'type' in t && 'message' in t;
 }
 

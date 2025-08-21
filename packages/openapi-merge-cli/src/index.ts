@@ -1,8 +1,7 @@
 import { ConfigurationInput, isConfigurationInputFromFile } from "./data";
 import { loadConfiguration } from "./load-configuration";
 import { Command } from 'commander';
-/* eslint-disable-next-line @typescript-eslint/no-var-requires */
-const pjson = require('../package.json');
+import pjson from '../package.json';
 import { merge, MergeInput } from '@launchdarkly/openapi-merge';
 import fs from 'fs';
 import path from 'path';
@@ -113,7 +112,7 @@ function isYamlExtension(filePath: string): boolean {
 
 function dumpAsYaml(blob: unknown): string {
   // Note: The JSON stringify and parse is required to strip the undefined values: https://github.com/nodeca/js-yaml/issues/571
-  return yaml.safeDump(JSON.parse(JSON.stringify(blob)), { indent: 2 });
+  return yaml.dump(JSON.parse(JSON.stringify(blob)), { indent: 2 });
 }
 
 function writeOutput(outputFullPath: string, outputSchema: Swagger.SwaggerV3): void {
