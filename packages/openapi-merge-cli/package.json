@@ -8,10 +8,14 @@
     "cli"
   ],
   "main": "dist/index",
-  "bin": "dist/cli.js",
+  "bin": {
+    "openapi-merge-cli": "dist/cli.js"
+  },
   "files": [
-    "dist/!(__tests__)",
-    "dist/!(__tests__)/**/*"
+    "dist/**/*",
+    "!dist/**/__tests__/**",
+    "!dist/**/*.test.*",
+    "!dist/**/*.spec.*"
   ],
   "author": "LaunchDarkly",
   "license": "MIT",
