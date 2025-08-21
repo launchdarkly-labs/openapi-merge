@@ -9,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: actions/checkout@master
+      uses: actions/checkout@main
     - name: Set up Node.js
-      uses: actions/setup-node@master
+      uses: actions/setup-node@main
       with:
         node-version: 14
     - run: yarn global add bolt
@@ -22,9 +22,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: actions/checkout@master
+      uses: actions/checkout@main
     - name: Set up Node.js
-      uses: actions/setup-node@master
+      uses: actions/setup-node@main
       with:
         node-version: 14
     - run: yarn global add bolt

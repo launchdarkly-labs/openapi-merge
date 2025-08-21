@@ -9,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: actions/checkout@master
+      uses: actions/checkout@main
     - name: Set up Node.js
-      uses: actions/setup-node@master
+      uses: actions/setup-node@main
       with:
         node-version: 14
     - run: yarn global add bolt
@@ -19,7 +19,8 @@ jobs:
     - run: yarn lint
     - run: yarn test
     - name: Publish if version has been updated
-      run: echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}" >> .npmrc && cp .npmrc packages/openapi-merge && cp .npmrc packages/openapi-merge-cli && bolt publish
+      # run: echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}" >> .npmrc && cp .npmrc packages/openapi-merge && cp .npmrc packages/openapi-merge-cli && bolt publish
+      run: echo "Not publishing for now"
       env: # More info about the environment variables in the README
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this as is, it's automatically generated
-        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }} # You need to set this in your repo settings
+        # NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }} # You need to set this in your repo settings
