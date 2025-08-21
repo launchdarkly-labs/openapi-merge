@@ -764,4 +764,144 @@ describe('OAS Component conflict', () => {
       });
     });
   });
+
+  describe('null and undefined handling', () => {
+    it('should handle null values correctly in deep equality comparison', () => {
+      const first: Swagger.SwaggerV3 = toOAS({}, {
+        schemas: {
+          Example: {
+            type: 'object',
+            properties: {
+              nullProp: null as any,
+              validProp: {
+                type: 'string'
+              }
+            }
+          }
+        }
+      });
+
+      const second: Swagger.SwaggerV3 = toOAS({}, {
+        schemas: {
+          Example: {
+            type: 'object',
+            properties: {
+              nullProp: null as any,
+              validProp: {
+                type: 'string'
+              }
+            }
+          }
+        }
+      });
+
+      const result = merge(toMergeInputs([first, second]));
+      expectMergeResult(result, {
+        output: toOAS({}, {
+          schemas: {
+            Example: {
+              type: 'object',
+              properties: {
+                nullProp: null as any,
+                validProp: {
+                  type: 'string'
+                }
+              }
+            }
+          }
+        })
+      });
+    });
+
+    it('should handle undefined values correctly in deep equality comparison', () => {
+      const first: Swagger.SwaggerV3 = toOAS({}, {
+        schemas: {
+          Example: {
+            type: 'object',
+            properties: {
+              undefinedProp: undefined as any,
+              validProp: {
+                type: 'string'
+              }
+            }
+          }
+        }
+      });
+
+      const second: Swagger.SwaggerV3 = toOAS({}, {
+        schemas: {
+          Example: {
+            type: 'object',
+            properties: {
+              undefinedProp: undefined as any,
+              validProp: {
+                type: 'string'
+              }
+            }
+          }
+        }
+      });
+
+      const result = merge(toMergeInputs([first, second]));
+      expectMergeResult(result, {
+        output: toOAS({}, {
+          schemas: {
+            Example: {
+              type: 'object',
+              properties: {
+                undefinedProp: undefined as any,
+                validProp: {
+                  type: 'string'
+                }
+              }
+            }
+          }
+        })
+      });
+    });
+
+    it('should treat null and undefined as different values', () => {
+      const first: Swagger.SwaggerV3 = toOAS({}, {
+        schemas: {
+          Example: {
+            type: 'object',
+            properties: {
+              prop: null as any
+            }
+          }
+        }
+      });
+
+      const second: Swagger.SwaggerV3 = toOAS({}, {
+        schemas: {
+          Example: {
+            type: 'object',
+            properties: {
+              prop: undefined as any
+            }
+          }
+        }
+      });
+
+      const result = merge(toMergeInputs([first, second]));
+      expectMergeResult(result, {
+        output: toOAS({}, {
+          schemas: {
+            Example: {
+              type: 'object',
+              properties: {
+                prop: null as any
+              }
+            },
+            Example1: {
+              type: 'object',
+              properties: {
+                prop: undefined as any
+              }
+            }
+          }
+        })
+      });
+    });
+  });
 });
