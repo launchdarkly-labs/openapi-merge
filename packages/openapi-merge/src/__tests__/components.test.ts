@@ -772,6 +772,7 @@ describe('OAS Component conflict', () => {
           Example: {
             type: 'object',
             properties: {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               nullProp: null as any,
               validProp: {
                 type: 'string'
@@ -786,6 +787,7 @@ describe('OAS Component conflict', () => {
           Example: {
             type: 'object',
             properties: {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               nullProp: null as any,
               validProp: {
                 type: 'string'
@@ -802,6 +804,7 @@ describe('OAS Component conflict', () => {
             Example: {
               type: 'object',
               properties: {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 nullProp: null as any,
                 validProp: {
                   type: 'string'
@@ -819,6 +822,7 @@ describe('OAS Component conflict', () => {
           Example: {
             type: 'object',
             properties: {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               undefinedProp: undefined as any,
               validProp: {
                 type: 'string'
@@ -833,6 +837,7 @@ describe('OAS Component conflict', () => {
           Example: {
             type: 'object',
             properties: {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               undefinedProp: undefined as any,
               validProp: {
                 type: 'string'
@@ -849,6 +854,7 @@ describe('OAS Component conflict', () => {
             Example: {
               type: 'object',
               properties: {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 undefinedProp: undefined as any,
                 validProp: {
                   type: 'string'
@@ -866,6 +872,7 @@ describe('OAS Component conflict', () => {
           Example: {
             type: 'object',
             properties: {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               prop: null as any
             }
           }
@@ -877,6 +884,7 @@ describe('OAS Component conflict', () => {
           Example: {
             type: 'object',
             properties: {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               prop: undefined as any
             }
           }
@@ -890,12 +898,14 @@ describe('OAS Component conflict', () => {
             Example: {
               type: 'object',
               properties: {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 prop: null as any
               }
             },
             Example1: {
               type: 'object',
               properties: {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 prop: undefined as any
               }
             }
