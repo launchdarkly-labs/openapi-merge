@@ -11,3 +11,6 @@
 
 # don't lint nyc coverage output
 /coverage
+
+.yarn/
+packages/*/.yarn

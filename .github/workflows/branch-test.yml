@@ -14,8 +14,7 @@ jobs:
       uses: actions/setup-node@main
       with:
         node-version: 14
-    - run: yarn global add bolt
-    - run: bolt install
+    - run: yarn install
     - run: yarn lint
   test:
     name: Test
@@ -27,6 +26,5 @@ jobs:
       uses: actions/setup-node@main
       with:
         node-version: 14
-    - run: yarn global add bolt
-    - run: bolt install
+    - run: yarn install
     - run: yarn test

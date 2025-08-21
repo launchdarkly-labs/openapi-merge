@@ -14,7 +14,6 @@
   ],
   "author": "LaunchDarkly",
   "license": "MIT",
-  "private": false,
   "homepage": "https://github.com/launchdarkly-labs/openapi-merge",
   "repository": "github:launchdarkly-labs/openapi-merge",
   "bugs": {
@@ -45,8 +44,5 @@
     "atlassian-openapi": "^1.0.8",
     "lodash": "^4.17.15",
     "ts-is-present": "^1.1.1"
-  },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org"
   }
 }
