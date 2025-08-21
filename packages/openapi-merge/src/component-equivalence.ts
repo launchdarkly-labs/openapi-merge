@@ -72,6 +72,11 @@ export function deepEquality<A>(xLookup: Lookup.Lookup, yLookup: Lookup.Lookup):
   const refRecord = new ReferenceRecord();
 
   function compare<T>(x: T | Swagger.Reference, y: T | Swagger.Reference): boolean {
+    // Handle null/undefined cases first
+    if (x === null || x === undefined || y === null || y === undefined) {
+      return x === y;
+    }
+
     // If both are references then look up the references and compare them for equality
     if (isPresent(x) && isPresent(y)) {
       if (TC.isReference(x) && TC.isReference(y)) {
@@ -84,8 +89,8 @@ export function deepEquality<A>(xLookup: Lookup.Lookup, yLookup: Lookup.Lookup):
         return compare(xResult, yResult);
       } else if (TC.isReference(x) || TC.isReference(y)) {
         return false;
-      } else if (typeof x === 'object' && typeof y === 'object') {
-        // If both are objects then they should have all of the same keys and the values of those keys should match
+      } else if (typeof x === 'object' && typeof y === 'object' && x !== null && y !== null) {
+        // If both are objects (and not null) then they should have all of the same keys and the values of those keys should match
         if (!arraysEquivalent(Object.keys(x), Object.keys(y))) {
           return false;
         }

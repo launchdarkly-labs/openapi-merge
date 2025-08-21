@@ -4,6 +4,10 @@ import { Swagger, SwaggerTypeChecks as TC } from "atlassian-openapi";
 export type Modify = (input: string) => string;
 
 export function walkSchemaReferences(schema: Swagger.Schema | Swagger.Reference, modify: Modify): void {
+  if (schema === null || schema === undefined) {
+    return;
+  }
+  
   if (TC.isReference(schema)) {
     schema.$ref = modify(schema.$ref);
   } else {
@@ -31,10 +35,12 @@ export function walkSchemaReferences(schema: Swagger.Schema | Swagger.Reference,
       walkSchemaReferences(schema.items, modify);
     }
 
-    for (const propertyKey in schema.properties) {
-      if (schema.properties.hasOwnProperty(propertyKey)) {
-        const property = schema.properties[propertyKey];
-        walkSchemaReferences(property, modify);
+    if (schema.properties !== undefined && schema.properties !== null) {
+      for (const propertyKey in schema.properties) {
+        if (schema.properties.hasOwnProperty(propertyKey)) {
+          const property = schema.properties[propertyKey];
+          walkSchemaReferences(property, modify);
+        }
       }
     }
 
@@ -45,6 +51,10 @@ export function walkSchemaReferences(schema: Swagger.Schema | Swagger.Reference,
 }
 
 export function walkExampleReferences(example: Swagger.Example | Swagger.Reference, modify: Modify): void {
+  if (example === null || example === undefined) {
+    return;
+  }
+  
   if (TC.isReference(example)) {
     example.$ref = modify(example.$ref);
   }
