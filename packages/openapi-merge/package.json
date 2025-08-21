@@ -1,7 +1,7 @@
 {
-  "name": "openapi-merge",
-  "version": "1.3.3",
-  "description": "A tool to merge numerous OpenAPI files into a single openapi definition.",
+  "name": "@launchdarkly/openapi-merge",
+  "version": "1.3.4",
+  "description": "A tool to merge numerous OpenAPI files into a single openapi definition. Forked from https://github.com/robertmassaioli/openapi-merge",
   "keywords": [
     "openapi",
     "merge"
@@ -12,17 +12,13 @@
     "dist/!(__tests__)",
     "dist/!(__tests__)/**/*"
   ],
-  "author": {
-    "name": "Robert Massaioli",
-    "email": "packages@rmdir.app",
-    "url": "https://rmdir.app/"
-  },
+  "author": "LaunchDarkly",
   "license": "MIT",
   "private": false,
-  "homepage": "https://github.com/robertmassaioli/openapi-merge",
-  "repository": "github:robertmassaioli/openapi-merge",
+  "homepage": "https://github.com/launchdarkly-labs/openapi-merge",
+  "repository": "github:launchdarkly-labs/openapi-merge",
   "bugs": {
-    "url": "https://github.com/robertmassaioli/openapi-merge/issues"
+    "url": "https://github.com/launchdarkly-labs/openapi-merge/issues"
   },
   "scripts": {
     "build": "tsc --project .",
